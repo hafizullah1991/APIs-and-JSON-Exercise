@@ -10,31 +10,24 @@ namespace APIsAndJSON
     internal class OpenWeatherMapAPI
     {
         
-        public void WeatherAPP(string city)
+        public void WeatherAPP()
         {
             HttpClient client = new HttpClient();
-            string APIKey = "be744f1a3c044deffb5fafb55053b6cc";
-            Console.WriteLine("type your city name ");
-            string City = Console.ReadLine();
+            string apiKey = "be744f1a3c044deffb5fafb55053b6cc";
+            Console.WriteLine("type your city name? ");
+            string city = Console.ReadLine();
 
-            string url = $"https://api.openweathermap.org/data/2.5/weather?q={City}&appid={APIKey}";
+            string url = $"https://api.openweathermap.org/data/2.5/weather?q={city}&appid={apiKey}&units=imperial";
             var weatherResponse = client.GetStringAsync(url).Result;
 
-            //JObject Response = JObject.Parse(weather1).GetValue("main").ToString();
+         JObject weatherObject = JObject.Parse(weatherResponse);
+            Console.WriteLine($" {city} temperature is {weatherObject["main"]["temp"]} degree's Fahrenheit");
 
-            dynamic weatherData = JObject.Parse(weatherResponse);
-            double tempreture = weatherData.main.temp;
-            int humidity = weatherData.main.humidity;
-            string cloudDescription = weatherData.weather[0].description;
+         
 
-           
 
-            double tempretureCelsius = tempreture - 273.15;
-            double tempretureFhrenheit = tempretureCelsius * 9 / 5 + 32;
 
-            Console.WriteLine($" tempreture in {City} : {tempretureFhrenheit:F2} F");
             
-            Console.WriteLine($"Humadity : {humidity}");
 
             
         }

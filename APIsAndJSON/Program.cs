@@ -20,11 +20,9 @@ namespace APIsAndJSON
             //    Console.WriteLine($"Ron Swanson: {ronQuote}");
             //}
                 OpenWeatherMapAPI api = new OpenWeatherMapAPI();
-            string[] cities = { "Walnut Creek", "Brentwood", " Fremont", "Richmon", "Dublin , " };
-            foreach(var city in cities)
-            {
-                api.WeatherAPP(city);
-            }
+           
+                api.WeatherAPP();
+            
             
          
            
